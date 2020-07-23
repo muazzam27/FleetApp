@@ -17,7 +17,7 @@ class FleetApiService(app:Application) {
     @Inject
     lateinit var api:FleetApiService
 
-    private fun getVehiclesList():Single<List<FleetVehiclesResponse>>{
+     fun getVehiclesList():Single<FleetVehiclesResponse>{
         return api.getVehiclesList()
     }
 }
