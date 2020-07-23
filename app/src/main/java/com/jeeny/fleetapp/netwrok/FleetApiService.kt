@@ -11,13 +11,18 @@ import javax.inject.Inject
 class FleetApiService(app:Application) {
 
     init {
-        DaggerAPIComponent.builder().appModule(AppModule(app)).aPIModule(APIModule()).build().inject(this)
+        DaggerAPIComponent
+            .builder()
+            .appModule(AppModule(app))
+            .aPIModule(APIModule())
+            .build()
+            .inject(this)
     }
 
     @Inject
-    lateinit var api:FleetApiService
+    lateinit var api:FleetAPI
 
      fun getVehiclesList():Single<FleetVehiclesResponse>{
-        return api.getVehiclesList()
+        return api.getVehicles()
     }
 }

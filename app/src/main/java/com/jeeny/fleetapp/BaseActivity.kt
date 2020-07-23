@@ -5,11 +5,22 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
+import com.jeeny.fleetapp.di.ActivityComponent
+import com.jeeny.fleetapp.di.AppModule
+import com.jeeny.fleetapp.di.DaggerActivityComponent
 
 open class BaseActivity : AppCompatActivity() {
+    lateinit var mComponent: ActivityComponent
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        mComponent = DaggerActivityComponent.builder()
+            .appModule(AppModule(application))
+            .build()
     }
+
+    fun getComponent(): ActivityComponent = mComponent
 
     fun showLoading(show: Boolean) {
         try {

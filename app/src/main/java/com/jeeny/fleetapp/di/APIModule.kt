@@ -22,7 +22,7 @@ open class APIModule {
     @Provides
     open fun provideFleetAPI(client:OkHttpClient):FleetAPI{
         return Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl("https://pastebin.com/")
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -46,6 +46,7 @@ open class APIModule {
         return gsonBuilder.create()
     }
 
+    @Provides
     internal fun provideOKhttpClient(cache: Cache):OkHttpClient{
         val interceptor = HttpLoggingInterceptor()
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
