@@ -22,13 +22,13 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:text="Vehicles"
+                android:text="@string/vehicles"
                 android:textColor="@android:color/black"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="200dp"
-                android:layout_height="45dp"
+                android:layout_height="35dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="12dp"
                 android:background="@drawable/spinner_background"
@@ -37,7 +37,7 @@
                 <Spinner
                     android:id="@+id/spinner"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="match_parent"
                     android:drawSelectorOnTop="true" />
 
             </LinearLayout>
