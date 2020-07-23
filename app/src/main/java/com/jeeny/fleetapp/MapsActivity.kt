@@ -9,17 +9,25 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.jeeny.fleetapp.databinding.ActivityMapsBinding
+import javax.inject.Inject
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapsActivity : BaseActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
 
+    @Inject
+    lateinit var fleetVehicleViewModel: FleetVehicleViewModel
+
+
+    private lateinit var binding: ActivityMapsBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_maps)
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        val mapFragment = supportFragmentManager
-                .findFragmentById(R.id.map) as SupportMapFragment
+        binding = ActivityMapsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
 
