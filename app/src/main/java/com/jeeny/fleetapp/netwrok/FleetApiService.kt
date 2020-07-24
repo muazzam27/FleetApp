@@ -8,21 +8,9 @@ import com.jeeny.fleetapp.model.FleetVehiclesResponse
 import io.reactivex.Single
 import javax.inject.Inject
 
-class FleetApiService(app:Application) {
+class FleetApiService(val api: FleetAPI) {
 
-    init {
-        DaggerAPIComponent
-            .builder()
-            .appModule(AppModule(app))
-            .aPIModule(APIModule())
-            .build()
-            .inject(this)
-    }
-
-    @Inject
-    lateinit var api:FleetAPI
-
-     fun getVehiclesList():Single<FleetVehiclesResponse>{
+    fun getVehiclesList(): Single<FleetVehiclesResponse> {
         return api.getVehicles()
     }
 }

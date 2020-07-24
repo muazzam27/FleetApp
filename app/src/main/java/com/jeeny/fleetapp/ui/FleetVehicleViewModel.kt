@@ -14,36 +14,29 @@ import com.jeeny.fleetapp.model.ValidationMessage
 import com.jeeny.fleetapp.netwrok.FleetApiService
 import com.jeeny.fleetapp.utils.applySchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.subjects.BehaviorSubject
+import java.util.function.BinaryOperator
 import javax.inject.Inject
 
-class FleetVehicleViewModel @Inject constructor(app: Application) : AndroidViewModel(app) {
+class FleetVehicleViewModel @Inject constructor(app: Application,val apiService: FleetApiService,val compositeDisposable: CompositeDisposable) : AndroidViewModel(app) {
 
     val fleetVehicleResponse: MutableLiveData<FleetVehiclesResponse> by lazy { MutableLiveData<FleetVehiclesResponse>() }
-    val loading by lazy { MutableLiveData<Boolean>() }
+    val loading =   BehaviorSubject.createDefault(false)
     val fleetVehiclesTypes:MutableLiveData<MutableList<String>> by lazy { MutableLiveData<MutableList<String>>()}
 
 
-    lateinit var compositeDisposable: CompositeDisposable
-    lateinit var apiService: FleetApiService
-
-    fun setObject(compositeDisposable: CompositeDisposable,apiService: FleetApiService){
-        this.compositeDisposable =compositeDisposable
-        this.apiService = apiService
-    }
-
-
     fun getFleetVehicles() {
-        loading.value = true
+        loading.onNext(true)
         compositeDisposable.add(
             apiService.getVehiclesList()
                 .applySchedulers()
                 .subscribe({
-                    loading.value = false
+                    loading.onNext(false)
                     fleetVehicleResponse.value = it
                     fleetVehiclesTypes.value = getVehiclesTypes(it.poiList)
 
                 }, {
-                    loading.value = false
+                    loading.onNext(false)
                     fleetVehicleResponse.value = null
                 })
         )
@@ -51,7 +44,7 @@ class FleetVehicleViewModel @Inject constructor(app: Application) : AndroidViewM
 
     fun getVehiclesByType(vehicles: List<Poi>, type: String): ArrayList<Poi> {
         var vehiclesList = ArrayList<Poi>()
-        if (vehicles.size > 0) {
+        if (vehicles.isNotEmpty()) {
             for (vehicle in vehicles) {
                 if (vehicle.fleetType.equals(type)) vehiclesList.add(vehicle)
             }
@@ -61,7 +54,7 @@ class FleetVehicleViewModel @Inject constructor(app: Application) : AndroidViewM
 
     fun getVehiclesTypes(vehicles: List<Poi>): MutableList<String> {
         var types = mutableListOf<String>()
-        if (vehicles.size > 0) {
+        if (vehicles.isNotEmpty()) {
             for (vehicle in vehicles) {
                 if (!types.contains(vehicle.fleetType)) types.add(vehicle.fleetType)
             }

@@ -31,7 +31,7 @@ open class APIModule {
     }
 
     @Provides
-    open fun provideAPIService(app:Application):FleetApiService = FleetApiService(app)
+    open fun provideAPIService(api: FleetAPI):FleetApiService = FleetApiService(api)
 
     @Provides
     internal fun provideHttpCache(application: Application): Cache {
