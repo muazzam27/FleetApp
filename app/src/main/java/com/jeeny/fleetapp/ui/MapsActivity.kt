@@ -55,7 +55,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, AdapterView.OnItemSelec
     private fun initUI() {
         try {
             supportActionBar?.hide()
-            fleetVehicleViewModel = ViewModelProviders.of(this).get(FleetVehicleViewModel::class.java)
+           // fleetVehicleViewModel = ViewModelProviders.of(this).get(FleetVehicleViewModel::class.java)
             fleetVehicleViewModel.setObject(compositeDisposable,apiService)
             fleetVehicleViewModel.loading.observe(this,loadingObserver)
             fleetVehicleViewModel.fleetVehicleResponse.observe(this,fleetVehicleResponseObserver)

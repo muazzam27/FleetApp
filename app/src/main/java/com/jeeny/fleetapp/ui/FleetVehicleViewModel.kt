@@ -18,17 +18,8 @@ import javax.inject.Inject
 
 class FleetVehicleViewModel @Inject constructor(app: Application) : AndroidViewModel(app) {
 
-   // init {
-//        DaggerActivityComponent.builder()
-//            .appModule(AppModule(app))
-//            .activityModule(ActivityModule(app))
-//            .build()
-//            .inject(this)
-//    }
-
     val fleetVehicleResponse: MutableLiveData<FleetVehiclesResponse> by lazy { MutableLiveData<FleetVehiclesResponse>() }
     val loading by lazy { MutableLiveData<Boolean>() }
-    val validationMessage = MutableLiveData<ValidationMessage>()
     val fleetVehiclesTypes:MutableLiveData<MutableList<String>> by lazy { MutableLiveData<MutableList<String>>()}
 
 
@@ -39,10 +30,6 @@ class FleetVehicleViewModel @Inject constructor(app: Application) : AndroidViewM
         this.compositeDisposable =compositeDisposable
         this.apiService = apiService
     }
-
-
-
-    fun getValidationMessage(): LiveData<ValidationMessage> = validationMessage
 
 
     fun getFleetVehicles() {
@@ -56,7 +43,6 @@ class FleetVehicleViewModel @Inject constructor(app: Application) : AndroidViewM
                     fleetVehiclesTypes.value = getVehiclesTypes(it.poiList)
 
                 }, {
-                    validationMessage.postValue(ValidationMessage("Something went wrong while fetching vehicles"))
                     loading.value = false
                     fleetVehicleResponse.value = null
                 })
