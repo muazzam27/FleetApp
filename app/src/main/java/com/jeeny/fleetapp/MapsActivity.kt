@@ -18,9 +18,13 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.jeeny.fleetapp.databinding.ActivityMapsBinding
+import com.jeeny.fleetapp.databinding.LayoutCustomWindowBinding
 import com.jeeny.fleetapp.model.FleetVehiclesResponse
 import com.jeeny.fleetapp.model.Poi
+import com.jeeny.fleetapp.netwrok.FleetApiService
 import com.jeeny.fleetapp.utils.Utils
+import com.jeeny.fleetapp.vehicles.CustomMarkerWindowInfo
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_maps.*
 import javax.inject.Inject
 
@@ -31,9 +35,15 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, AdapterView.OnItemSelec
     @Inject
     lateinit var fleetVehicleViewModel: FleetVehicleViewModel
     private lateinit var binding: ActivityMapsBinding
-
     private var vehicles = ArrayList<Poi>()
-    private var filteredVehicles = ArrayList<Poi>()
+
+    @Inject
+    lateinit var adapter:CustomMarkerWindowInfo
+    @Inject
+    lateinit var compositeDisposable: CompositeDisposable
+
+    @Inject
+    lateinit var apiService: FleetApiService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +60,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, AdapterView.OnItemSelec
         try {
             supportActionBar?.hide()
             fleetVehicleViewModel = ViewModelProviders.of(this).get(FleetVehicleViewModel::class.java)
+            fleetVehicleViewModel.setObject(compositeDisposable,apiService)
             fleetVehicleViewModel.loading.observe(this,loadingObserver)
             fleetVehicleViewModel.fleetVehicleResponse.observe(this,fleetVehicleResponseObserver)
             fleetVehicleViewModel.fleetVehiclesTypes.observe(this,fleetVehicleTypesObserver)
@@ -78,6 +89,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, AdapterView.OnItemSelec
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        mMap.setInfoWindowAdapter(adapter)
         fleetVehicleViewModel.getFleetVehicles()
     }
 

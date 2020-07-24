@@ -1,9 +1,11 @@
 package com.jeeny.fleetapp
 
 import android.app.Application
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.jeeny.fleetapp.di.ActivityModule
 import com.jeeny.fleetapp.di.AppModule
 import com.jeeny.fleetapp.di.DaggerActivityComponent
 import com.jeeny.fleetapp.model.FleetVehiclesResponse
@@ -16,12 +18,13 @@ import javax.inject.Inject
 
 class FleetVehicleViewModel @Inject constructor(app: Application) : AndroidViewModel(app) {
 
-    init {
-        DaggerActivityComponent.builder()
-            .appModule(AppModule(app))
-            .build()
-            .inject(this)
-    }
+   // init {
+//        DaggerActivityComponent.builder()
+//            .appModule(AppModule(app))
+//            .activityModule(ActivityModule(app))
+//            .build()
+//            .inject(this)
+//    }
 
     val fleetVehicleResponse: MutableLiveData<FleetVehiclesResponse> by lazy { MutableLiveData<FleetVehiclesResponse>() }
     val loading by lazy { MutableLiveData<Boolean>() }
@@ -29,14 +32,14 @@ class FleetVehicleViewModel @Inject constructor(app: Application) : AndroidViewM
     val fleetVehiclesTypes:MutableLiveData<MutableList<String>> by lazy { MutableLiveData<MutableList<String>>()}
 
 
-    @Inject
     lateinit var compositeDisposable: CompositeDisposable
-
-    @Inject
     lateinit var apiService: FleetApiService
 
-//    @Inject
-//    lateinit var app: Application
+    fun setObject(compositeDisposable: CompositeDisposable,apiService: FleetApiService){
+        this.compositeDisposable =compositeDisposable
+        this.apiService = apiService
+    }
+
 
 
     fun getValidationMessage(): LiveData<ValidationMessage> = validationMessage

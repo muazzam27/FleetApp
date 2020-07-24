@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
 import com.jeeny.fleetapp.di.ActivityComponent
+import com.jeeny.fleetapp.di.ActivityModule
 import com.jeeny.fleetapp.di.AppModule
 import com.jeeny.fleetapp.di.DaggerActivityComponent
 
@@ -17,6 +18,7 @@ open class BaseActivity : AppCompatActivity() {
 
         mComponent = DaggerActivityComponent.builder()
             .appModule(AppModule(application))
+            .activityModule(ActivityModule(this))
             .build()
     }
 
