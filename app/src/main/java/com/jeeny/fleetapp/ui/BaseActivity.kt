@@ -1,10 +1,10 @@
-package com.jeeny.fleetapp
+package com.jeeny.fleetapp.ui
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
+import com.jeeny.fleetapp.R
 import com.jeeny.fleetapp.di.ActivityComponent
 import com.jeeny.fleetapp.di.ActivityModule
 import com.jeeny.fleetapp.di.AppModule

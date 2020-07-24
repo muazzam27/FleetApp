@@ -1,8 +1,5 @@
-package com.jeeny.fleetapp
+package com.jeeny.fleetapp.ui
 
-import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -17,13 +14,12 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.jeeny.fleetapp.R
 import com.jeeny.fleetapp.databinding.ActivityMapsBinding
-import com.jeeny.fleetapp.databinding.LayoutCustomWindowBinding
 import com.jeeny.fleetapp.model.FleetVehiclesResponse
 import com.jeeny.fleetapp.model.Poi
 import com.jeeny.fleetapp.netwrok.FleetApiService
 import com.jeeny.fleetapp.utils.Utils
-import com.jeeny.fleetapp.vehicles.CustomMarkerWindowInfo
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_maps.*
 import javax.inject.Inject
@@ -38,7 +34,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, AdapterView.OnItemSelec
     private var vehicles = ArrayList<Poi>()
 
     @Inject
-    lateinit var adapter:CustomMarkerWindowInfo
+    lateinit var adapter: CustomMarkerWindowInfo
     @Inject
     lateinit var compositeDisposable: CompositeDisposable
 

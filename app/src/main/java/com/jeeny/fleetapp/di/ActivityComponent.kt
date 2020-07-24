@@ -1,8 +1,8 @@
 package com.jeeny.fleetapp.di
 
-import com.jeeny.fleetapp.FleetVehicleViewModel
-import com.jeeny.fleetapp.MapsActivity
-import com.jeeny.fleetapp.vehicles.CustomMarkerWindowInfo
+import com.jeeny.fleetapp.ui.FleetVehicleViewModel
+import com.jeeny.fleetapp.ui.MapsActivity
+import com.jeeny.fleetapp.ui.CustomMarkerWindowInfo
 import dagger.Component
 import javax.inject.Singleton
 

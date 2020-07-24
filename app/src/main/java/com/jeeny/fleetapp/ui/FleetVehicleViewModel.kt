@@ -1,4 +1,4 @@
-package com.jeeny.fleetapp
+package com.jeeny.fleetapp.ui
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatActivity

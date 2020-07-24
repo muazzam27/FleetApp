@@ -2,7 +2,7 @@ package com.jeeny.fleetapp.di
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
-import com.jeeny.fleetapp.vehicles.CustomMarkerWindowInfo
+import com.jeeny.fleetapp.ui.CustomMarkerWindowInfo
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
@@ -22,7 +22,8 @@ class ActivityModule(val activity:AppCompatActivity) {
     fun provideActivity():AppCompatActivity = activity
 
     @Provides
-    fun provideCustomWindowInfo():CustomMarkerWindowInfo = CustomMarkerWindowInfo(activity)
+    fun provideCustomWindowInfo(): CustomMarkerWindowInfo =
+        CustomMarkerWindowInfo(activity)
 
 
 }
