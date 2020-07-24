@@ -39,3 +39,7 @@ d
 4app/src/main/java/com/jeeny/fleetapp/MapsActivity.kt,d/5/d53e65ee0170d22a74e11673b74b686640e9df9a
 P
  app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
+l
+<app/src/main/java/com/jeeny/fleetapp/di/ActivityContext.java,e/5/e5818d9aaed9226ed8a3fecab51a495c2ef62ce7
+w
+Gapp/src/main/java/com/jeeny/fleetapp/vehicles/CustomMarkerWindowInfo.kt,2/7/275d30ed28a85de67ad6e7cbb49851dd4fb52e03

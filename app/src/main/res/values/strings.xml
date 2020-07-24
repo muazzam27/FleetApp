@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Fleet App</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps">Fleet App</string>
     <string name="vehicles">Vehicles</string>
 </resources>
