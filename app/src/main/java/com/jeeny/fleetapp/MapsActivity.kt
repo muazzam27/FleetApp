@@ -121,6 +121,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, AdapterView.OnItemSelec
             MarkerOptions()
                 .position(LatLng(vehicle.coordinate.latitude,vehicle.coordinate.longitude))
                 .title(vehicle.fleetType)
+                .snippet(vehicle.fleetType+","+vehicle.coordinate.latitude.toString()+","+vehicle.coordinate.latitude.toString()+","+vehicle.heading)
                 .icon(BitmapDescriptorFactory.fromBitmap(Utils.getIcon(this)))
 
         ).showInfoWindow()

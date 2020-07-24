@@ -14,6 +14,10 @@ class CustomMarkerWindowInfo constructor(val activity: AppCompatActivity) :
     override fun getInfoContents(p0: Marker?): View {
         val view = activity.layoutInflater.inflate(R.layout.layout_custom_window, null)
         binding = LayoutCustomWindowBinding.bind(view)
+        var snippet = p0?.snippet?.split(",")?.toTypedArray()
+        binding.fleetType.text = "Fleet Type: ${snippet?.get(0)}"
+        binding.latLong.text = "Lat: ${snippet?.get(1)} Long: ${snippet?.get(2)}"
+        binding.heading.text = "Heading: ${snippet?.get(3)}"
         return view
     }
 
