@@ -74,10 +74,6 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, AdapterView.OnItemSelec
         setSpinnerCategoriesData(it)
     }
 
-    private val loadingObserver = Observer<Boolean> {
-        if (it) showLoading(true) else showLoading(false)
-    }
-
     private val fleetVehicleResponseObserver = Observer<FleetVehiclesResponse> {
         try {
             vehicles = it.poiList as ArrayList<Poi>

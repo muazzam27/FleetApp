@@ -4,6 +4,7 @@ import android.app.Application
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.jeeny.fleetapp.BuildConfig
 import com.jeeny.fleetapp.netwrok.FleetAPI
 import com.jeeny.fleetapp.netwrok.FleetApiService
 import dagger.Module
@@ -22,7 +23,7 @@ open class APIModule {
     @Provides
     open fun provideFleetAPI(client:OkHttpClient):FleetAPI{
         return Retrofit.Builder()
-            .baseUrl("https://pastebin.com/")
+            .baseUrl(BuildConfig.END_POINT)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
