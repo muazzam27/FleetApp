@@ -41,3 +41,5 @@ p
 @app/src/main/java/com/jeeny/fleetapp/ui/FleetVehicleViewModel.kt,9/7/97914f8b9fe00eed9c8ab0eb90d30d17364f02b2
 g
 7app/src/main/java/com/jeeny/fleetapp/ui/MapsActivity.kt,a/7/a7809b890c332a65180d2cf602017218ca2a12ab
+>
+app/.gitignore,5/1/51e1c5d383dfaa35e0e7e5873a0a99355a86880f

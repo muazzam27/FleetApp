@@ -1,21 +1,14 @@
 package com.jeeny.fleetapp.ui
 
 import android.app.Application
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.jeeny.fleetapp.di.ActivityModule
-import com.jeeny.fleetapp.di.AppModule
-import com.jeeny.fleetapp.di.DaggerActivityComponent
 import com.jeeny.fleetapp.model.FleetVehiclesResponse
 import com.jeeny.fleetapp.model.Poi
-import com.jeeny.fleetapp.model.ValidationMessage
 import com.jeeny.fleetapp.netwrok.FleetApiService
 import com.jeeny.fleetapp.utils.applySchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.BehaviorSubject
-import java.util.function.BinaryOperator
 import javax.inject.Inject
 
 class FleetVehicleViewModel @Inject constructor(app: Application,val apiService: FleetApiService,val compositeDisposable: CompositeDisposable) : AndroidViewModel(app) {
